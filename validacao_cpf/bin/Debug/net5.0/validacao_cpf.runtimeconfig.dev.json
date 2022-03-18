@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\juneq\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\juneq\\.nuget\\packages"
+    ]
+  }
+}
