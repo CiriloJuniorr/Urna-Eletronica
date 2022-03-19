@@ -34,7 +34,7 @@ namespace validacao_cpf.Controllers
             var result = IsCpf(cpf);
 
             if (!result)
-                return BadRequest(false);
+                return BadRequest("false");
 
             return Ok(result);
         }

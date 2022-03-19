@@ -14,16 +14,40 @@ body{
 }
 
 .container{
+    background-color: bisque;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 1rem;
+    padding: 2rem;
+
 }
 
 .screen{
-    border: 1px solid black;
-    padding: 4rem;
-    border-radius: 0.4rem;
+    background: #fff;
+    border: 0.5px solid black;
     margin-right: 3rem;
+    padding-bottom: 4rem;
+    padding-top: 4rem;
+    width: 600px;
+    height: 450px;
+
+}
+
+.fim{
+    background: #fff;
+    border: 0.5px solid black;
+    margin-right: 3rem;
+    padding-bottom: 4rem;
+    padding-top: 4rem;
+    width: 600px;
+    height: 450px;
+    text-align: center;
+    font-size: 1.5rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .screen h1{
@@ -45,6 +69,7 @@ body{
 */
 
 .screen form input{
+    background-color: #fff;
     width: 3rem;
     height: 3rem;
     text-align: center;
@@ -52,15 +77,19 @@ body{
 }
 
 .screen .candidate{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
     margin-top: 2rem;
+    justify-content: center;
+    align-content: center;
 }
 
 .screen .candidate img{
-    width: 150px;
+    width: 200px;
     height: 150px;
     object-fit: cover;
-    margin-right: 1rem;
+    margin-left: auto;
 }
 
 .screen .candidate h2{
@@ -82,17 +111,23 @@ body{
 
 .keyboard .numbers{
     display: grid;
-    grid-template-columns: 3rem 3rem 3rem;
-    gap: .5rem;
+    grid-template-columns: 4rem 4rem 4rem;
+    gap: 1rem;
 }
 
 .keyboard .numbers button{
-    width: 3rem;
+    width: 4rem;
     height: 3rem;
     font-size: 1.5rem;
     background: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
+    cursor: pointer;
 }
+
+.keyboard .numbers button:active {
+    background-color: #000000;
+    transform: translateY(4px);
+  }
 
 .keyboard .numbers button:last-child{
     justify-self: center;
@@ -102,12 +137,33 @@ body{
 .buttons{
     display: flex;
     align-items: flex-end;
+    text-align: left;
+}
+
+.buttons .white:hover{
+    background-color: rgba(255, 255, 255, 0.70);
+}
+
+.buttons .reset:hover{
+    background-color: rgba(247, 146, 46, 0.70);
+}
+
+.buttons .submit:hover{
+    background-color: rgba(24, 173, 24, 0.70);
 }
 
 .buttons button{
     margin-top: 1rem;
     padding: 0.8rem;
+    transition: 500ms;
+    cursor: pointer;
+    
 }
+
+.buttons button:active{
+    transform: translateY(4px);
+}
+
 
 .buttons .white{
     background-color: rgb(255, 255, 255);

@@ -11,19 +11,25 @@ const party = document.querySelector("#party")
 const image = document.querySelector("#image")
 const input = document.querySelectorAll("input")
 const numbers = document.querySelectorAll("#numbers")
+const finish = document.querySelector(".fim")
+const usersDisplay = document.querySelector(".screen")
+const fimMensagem = document.querySelector(".fimMensagem")
+const confirmedSubmit = document.querySelector(".confirmedSubmit")
+let isWhite = false
+let pessoa = []
 let numbersDisplay = ""
 const candidatos = [
     {
         name: "Pedrinho",
         number: 45,
         party: "PSPO",
-        image: "./img/candidato1.png"
+        image: "./img/candidato1.jpg"
     },
     {
         name: "Zezinho",
         number: 22,
-        party: "PQPQ",
-        image: "./img/candidato2.png"
+        party: "PMDB",
+        image: "./img/candidato2.jpg"
     },
     {
         name: "Candidato",
@@ -34,12 +40,14 @@ const candidatos = [
     },
 
 ]
-function buscarCandidato(filter){
-    const pessoa = candidatos.filter(candidato => candidato.number == filter)
-            nameCandidate.innerHTML = pessoa[0].name
-            party.innerText = pessoa[0].party
-            image.src = pessoa[0].image
-            //numbersDisplay = ""
+function buscarCandidato(filter) {
+    pessoa = candidatos.filter(candidato => candidato.number == filter)
+    if (pessoa != "") {
+        nameCandidate.innerHTML = pessoa[0].name
+        party.innerText = pessoa[0].party
+        image.src = pessoa[0].image
+
+    }
 }
 
 input.forEach((element, i) => {
@@ -61,13 +69,14 @@ input.forEach((element, i) => {
 
 numbers.forEach(button => {
     button.addEventListener("click", () => {
-    if(input[0].value ){
-        input[1].value = button.innerText
-        numbersDisplay+=button.innerText
-    }else{
-        input[0].value = button.innerText
-        numbersDisplay+=button.innerText
-    }       
+        playedSongs("./songs/effect_number.mp3")
+        if (input[0].value) {
+            input[1].value = button.innerText
+            numbersDisplay += button.innerText
+        } else {
+            input[0].value = button.innerText
+            numbersDisplay += button.innerText
+        }
         console.log(numbersDisplay)
         if (numbersDisplay.length > 1) {
             buscarCandidato(numbersDisplay)
@@ -75,28 +84,58 @@ numbers.forEach(button => {
     })
 
 });
+function playedSongs(path) {
+    let audio = new Audio(path)
+    audio.volume=0.5
+    audio.play()
+}
 
 function resetcandidato() {
     nameCandidate.innerText = candidatos[2].name
     party.innerText = candidatos[2].party
     image.src = candidatos[2].image
     numbersDisplay = ""
+    input.forEach(element => {
+        element.value = ""
+    });
+    finish.style.display = "none"
+    usersDisplay.style.display = "block"
 }
+
+function clickWhite(){
+    fimMensagem.innerText = "VOTO EM BRANCO"
+    confirmedSubmit.innerText = "Confirmar: Para confirmar seu voto em branco"
+    resetcandidato()
+    finish.style.display = "flex"
+    usersDisplay.style.display = "none"
+}
+
 
 resetcandidato()
 
 submit.addEventListener("click", () => {
-    alert("Você !")
+    playedSongs("./songs/effect_confirmar.mp3")
+    if (pessoa != "" || isWhite) {
+        fimMensagem.innerText = "FIM"
+    } else if(numbersDisplay==""){ 
+        fimMensagem.innerText = "Insira um candidato"
+    }else{
+        fimMensagem.innerText = "VOTO NULO"
+        resetcandidato()
+}
+    finish.style.display = "flex"
+    usersDisplay.style.display = "none"
+    confirmedSubmit.textContent = ""
+    isWhite = false
+    setTimeout(resetcandidato, 2000)
 })
 
 reset.addEventListener("click", () => {
     resetcandidato()
-    input.forEach(element => {
-        element.value = ""
-    });
+    playedSongs("./songs/effect_corrigir.mp3")
 })
 
 white.addEventListener("click", () => {
-    alert("Você votou!")
+    isWhite = true
+    clickWhite()
 })
-
