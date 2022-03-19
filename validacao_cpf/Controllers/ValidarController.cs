@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace validacao_cpf.Controllers
 {
     [ApiController]
-
+    [Route("api/v1/[controller]")]
     public class ValidarController : ControllerBase
     {
         public ValidarController() { }
@@ -19,21 +19,14 @@ namespace validacao_cpf.Controllers
         /// <param name="cpf">CPF para ser validado</param>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(bool), 200)]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        [Route("api/validar")]
-        public async Task<ActionResult<bool>> Get([FromQuery] string cpf)
+        public bool Get([FromQuery] string cpf)
         {
             if (string.IsNullOrEmpty(cpf))
-                return BadRequest(false);
+                return false;
 
             var result = IsCpf(cpf);
 
-            if (!result)
-                return BadRequest("false");
-
-            return Ok(result);
+            return result;
         }
 
         /// <summary>
