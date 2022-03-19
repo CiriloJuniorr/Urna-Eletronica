@@ -64,9 +64,7 @@ body{
     margin-right: .8rem;
 }
 
-/* 1 rem = 16px (nem sempre, maioria dos navegadores mexem na extensão)
-
-*/
+/*1 rem = 16px (nem sempre, maioria dos navegadores mexem na extensão)*/
 
 .screen form input{
     background-color: #fff;

@@ -11,10 +11,7 @@ namespace validacao_cpf.Controllers
 
     public class ValidarController : ControllerBase
     {
-        public ValidarController()
-        {
-
-        }
+        public ValidarController() { }
 
         /// <summary>
         /// EndPoint para validação de CPF.
