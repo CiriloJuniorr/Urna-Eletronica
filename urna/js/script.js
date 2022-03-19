@@ -117,7 +117,7 @@ submit.addEventListener("click", () => {
   if (pessoa != "" || isWhite) {
     fimMensagem.innerText = "FIM";
   } else if (numbersDisplay == "") {
-    fimMensagem.innerText = "Insira um candidato";
+    fimMensagem.innerText = "Insira o número do candidato";
   } else {
     fimMensagem.innerText = "VOTO NULO";
     resetcandidato();
