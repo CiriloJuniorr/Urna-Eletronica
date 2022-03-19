@@ -29,7 +29,7 @@ const candidatos = [
         name: "Candidato",
         number: null,
         party: "Partido",
-        image: "../img/default.png"
+        image: "./img/default.png"
 
     },
 
@@ -86,7 +86,7 @@ function resetcandidato() {
 resetcandidato()
 
 submit.addEventListener("click", () => {
-    alert("Você votou!")
+    alert("Você !")
 })
 
 reset.addEventListener("click", () => {
